@@ -40,6 +40,7 @@
                     <p>Welcome to your iView app!</p>
                     <Button type="ghost" @click="handleStart">Start iView</Button>
                 </h2>
+                <div id="chart" ref="chart" style="width:600px; height: 400px;"></div>
             </Col>
         </Row>
     </div>
@@ -74,6 +75,7 @@
             let me = this;
             me.$nextTick(()=>{
               me.$store.dispatch('getStart');
+              me.$store.dispatch('initChart',{chartId:me.$refs.chart});
             })
         }
     };

@@ -2,6 +2,7 @@
  */
 import axios from 'axios'
 import * as CommonConst from '../CommonConst'
+import echarts from 'echarts'
 
 const state = {
     getStart: '',
@@ -22,6 +23,30 @@ const actions = {
                 commit(CommonConst.GET_START, {resData: 'error'});
             });
     },
+    initChart({commit},{chartId}){
+        let myChart = echarts.init(chartId);
+        let option = {
+            title:{
+                text:'ECharts 数据统计'
+            },
+            tooltip:{},
+            legend:{
+                data:['用户来源']
+            },
+            xAxis:{
+                data:["Android","IOS","PC","Ohter"]
+            },
+            yAxis:{
+
+            },
+            series:[{
+                name:'访问量',
+                type:'line',
+                data:[500,200,360,100]
+            }]
+        };
+        myChart.setOption(option);
+    }
 };
 
 const mutations = {
